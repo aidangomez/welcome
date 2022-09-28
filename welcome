@@ -8,7 +8,7 @@ if [ -z "$COHERE_KEY" ]; then
     COHERE_KEY="YOUR API KEY FROM OS.COHERE.AI" # Should store this as an env variable in your .bashrc
 fi
 
-if [[$STATIC]]; then
+if [[ $STATIC != 0 ]]; then
     morning="Good morning, I hope u have a rly good day (◕‿◕✿)
     Good morning, I hope u slept well (◕‿◕✿)
     you mean a lot to me (◕‿◕✿)
