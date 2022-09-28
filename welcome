@@ -4,7 +4,9 @@
 # to whatever you want!
 
 STATIC=0
-COHERE_KEY="YOUR API KEY FROM OS.COHERE.AI" # Should store this as an env variable in your .bashrc
+if [ -z "$COHERE_KEY" ]; then
+    COHERE_KEY="YOUR API KEY FROM OS.COHERE.AI" # Should store this as an env variable in your .bashrc
+fi
 
 if [[$STATIC]]; then
     morning="Good morning, I hope u have a rly good day (◕‿◕✿)
