@@ -4,7 +4,7 @@
 # to whatever you want!
 
 STATIC=0
-COHERE_KEY="YOUR API KEY FROM OS.COHERE.AI"
+COHERE_KEY="YOUR API KEY FROM OS.COHERE.AI" # Should store this as an env variable in your .bashrc
 
 if [[$STATIC]]; then
     morning="Good morning, I hope u have a rly good day (◕‿◕✿)
@@ -50,7 +50,7 @@ else
     --data-raw '{
         "model": "xlarge",
         "prompt": "List of cute welcome phrases:\n- Good morning, I hope u have a rly good day (◕‿◕✿)\n- Good morning, I hope u slept well (◕‿◕✿)\n- you mean a lot to me (◕‿◕✿)\n- (づ￣ ³￣)づ Good morning, I missed you!\n- (づ￣ ³￣)づ Good morning, Cohere awaits!\n- (づ￣ ³￣)づ Good morning!\n- (｡◕‿◕｡) you look lovely today\n- (｡◕‿◕｡) It’s gonna be a rly good day today\n- (｡◕‿◕｡) did you sleep well? remem u need 6-9 hours each night!\n- (づ｡◕‿‿◕｡)づ big things gonna happen today!!\n- (づ｡◕‿‿◕｡)づ gm, im very proud of u\n- (づ｡◕‿‿◕｡)づ gm, how’d you sleep?\n- ༼ つ ಥ_ಥ ༽つ pls give me coffee\n- ༼ つ ◕_◕ ༽つ within lies great power. go forth and seek your parameters.\n- ༼ つ ◕_◕ ༽つ today, you shall discover your true power\n- ༼ つ ◕_◕ ༽つ behold... Caleb   ▼・ᴥ・▼ <( woof )\n- ʕ•ᴥ•ʔ co:mfy time\n- ʕ•ᴥ•ʔ im a bear\n- u look rly nice today (◕‿◕✿)\n- Cheer time.. 1! 2! 3! CooHeErrE (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧\n- (づ￣ ³￣)づ I MISSED YOU SO MUCH THANK YOU FOR COMING BACKK ADFJSLDJF\n- (づ￣ ³￣)づ YOU’RE BACK!!! ADFJSLDJF\n- COHEEEERRREEEE (｡◕‿◕｡)\n- | (• ◡•)| COHERE TIME! (❍ᴥ❍ʋ)\n- ༼ つ ಥ_ಥ ༽つ U r my hero\n- (~˘▾˘)~ PARAMETERS ~(˘▾˘~)\n- im baby (◕ ˬ ◕✿)\n- your voice is so sweet (◕ ˬ ◕✿)\n-", 
-        "max_tokens": 10,
+        "max_tokens": 20,
         "temperature": 0.9,
         "k": 0,
         "p": 0.75,
@@ -64,4 +64,5 @@ fi
 
 echo $msg
 
+# need to try both of these because if the first one doesn't work then the second one will and vice versa, depends on generation.
 defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "${msg}" || defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "'${msg}'"
