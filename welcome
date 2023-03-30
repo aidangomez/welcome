@@ -5,7 +5,7 @@
 
 STATIC=0
 if [ -z "$COHERE_KEY" ]; then
-    COHERE_KEY="YOUR API KEY FROM OS.COHERE.AI" # Should store this as an env variable in your .bashrc
+    COHERE_KEY="YOUR API KEY FROM DASHBOARD.COHERE.AI" # Should store this as an env variable in your .bashrc
 fi
 
 if [[ $STATIC != 0 ]]; then
@@ -45,20 +45,19 @@ if [[ $STATIC != 0 ]]; then
         msg=$(echo "$afternoon" | sort -R | head -n 1)
     fi
 else
-    msg=$(curl --location --request POST 'https://api.cohere.ai/generate' \
+    msg=$(curl --location --request POST 'https://api.cohere.ai/v1/generate' \
     --header "Authorization: BEARER ${COHERE_KEY}" \
     --header 'Content-Type: application/json' \
-    --header 'Cohere-Version: 2021-11-08' \
     --data-raw '{
-        "model": "xlarge",
-        "prompt": "List of cute welcome phrases:\n- Good morning, I hope u have a rly good day (◕‿◕✿)\n- Good morning, I hope u slept well (◕‿◕✿)\n- you mean a lot to me (◕‿◕✿)\n- (づ￣ ³￣)づ Good morning, I missed you!\n- (づ￣ ³￣)づ Good morning, Cohere awaits!\n- (づ￣ ³￣)づ Good morning!\n- (｡◕‿◕｡) you look lovely today\n- (｡◕‿◕｡) It’s gonna be a rly good day today\n- (｡◕‿◕｡) did you sleep well? remem u need 6-9 hours each night!\n- (づ｡◕‿‿◕｡)づ big things gonna happen today!!\n- (づ｡◕‿‿◕｡)づ gm, im very proud of u\n- (づ｡◕‿‿◕｡)づ gm, how’d you sleep?\n- ༼ つ ಥ_ಥ ༽つ pls give me coffee\n- ༼ つ ◕_◕ ༽つ within lies great power. go forth and seek your parameters.\n- ༼ つ ◕_◕ ༽つ today, you shall discover your true power\n- ༼ つ ◕_◕ ༽つ behold... Caleb   ▼・ᴥ・▼ <( woof )\n- ʕ•ᴥ•ʔ co:mfy time\n- ʕ•ᴥ•ʔ im a bear\n- u look rly nice today (◕‿◕✿)\n- Cheer time.. 1! 2! 3! CooHeErrE (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧\n- (づ￣ ³￣)づ I MISSED YOU SO MUCH THANK YOU FOR COMING BACKK ADFJSLDJF\n- (づ￣ ³￣)づ YOU’RE BACK!!! ADFJSLDJF\n- COHEEEERRREEEE (｡◕‿◕｡)\n- | (• ◡•)| COHERE TIME! (❍ᴥ❍ʋ)\n- ༼ つ ಥ_ಥ ༽つ U r my hero\n- (~˘▾˘)~ PARAMETERS ~(˘▾˘~)\n- im baby (◕ ˬ ◕✿)\n- your voice is so sweet (◕ ˬ ◕✿)\n-", 
+        "model": "command-xlarge-nightly",
+        "prompt": "System: Below is a list of cute phrases.\n(~˘▾˘)~ PARAMETERS ~(˘▾˘~)\nhave a rly good day (◕‿◕✿)\nI hope u slept well (◕‿◕✿)\nyou mean a lot to me (◕‿◕✿)\n(づ￣ ³￣)づ Cohere awaits!\n(｡◕‿◕｡) you look lovely today\n(｡◕‿◕｡) It’s gonna be a rly good day today\n(｡◕‿◕｡) did you sleep well? remem u need 6-9 hours each night!\n(づ｡◕‿‿◕｡)づ big things gonna happen today!!\n(づ｡◕‿‿◕｡)づ im very proud of u\n(づ｡◕‿‿◕｡)づ how’d you sleep?\n༼ つ ಥ_ಥ ༽つ pls give me coffee\n༼ つ ◕_◕ ༽つ within lies great power. go forth and seek your parameters.\n༼ つ ◕_◕ ༽つ today, you shall discover your true power\n༼ つ ◕_◕ ༽つ behold... Caleb   ▼・ᴥ・▼ <( woof )\nʕ•ᴥ•ʔ co:mfy time\n- ʕ•ᴥ•ʔ im a bear\nu look rly nice today (◕‿◕✿)\nCheer time.. 1! 2! 3! CooHeErrE (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧\n(づ￣ ³￣)づ I MISSED YOU SO MUCH THANK YOU FOR COMING BACKK ADFJSLDJF\n(づ￣ ³￣)づ YOU’RE BACK!!! ADFJSLDJF\n- COHEEEERRREEEE (｡◕‿◕｡)\n| (• ◡•)| COHERE TIME! (❍ᴥ❍ʋ)\n༼ つ ಥ_ಥ ༽つ U r my hero\nim baby (◕ ˬ ◕✿)\nyour voice is so sweet (◕ ˬ ◕✿)\n\nUser: Write a single cute phrase, similar to the message examples provided above by the System, including a cute emoji.\nChatbot:", 
         "max_tokens": 50,
-        "temperature": 0.9,
+        "temperature": 0.5,
         "k": 0,
         "p": 0.75,
         "frequency_penalty": 0,
         "presence_penalty": 0,
-        "stop_sequences": ["\n"],
+        "stop_sequences": [],
         "return_likelihoods": "NONE",
         "language": "en"
         }' | python3 -c 'import json,sys;obj=json.load(sys.stdin);print(obj["generations"][0]["text"].strip());')
